@@ -6,23 +6,30 @@ import {
   Patch,
   Param,
   Delete,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from '@prisma/client';
 import { LoginUserDto } from './dto/login-user.dto';
-import { LoginResponse } from './interfaces/users-login.interface';
+import { LoginResponse, UserPayload } from './interfaces/users-login.interface';
+import { UserRequest } from './interfaces/users-request.interface';
+import { Public } from 'src/common/decorators/public.decorator';
+import { MeGuard } from 'src/common/guards/me.guard';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Public()
   @Post('register')
   registerUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.register(createUserDto);
   }
 
+  @Public()
   @Post('login')
   loginUser(@Body() loginUserDto: LoginUserDto): Promise<LoginResponse> {
     // call users service method to login user
@@ -30,8 +37,8 @@ export class UsersController {
   }
 
   @Get('profile')
-  me(): string {
-    return 'My Profile!';
+  me(@Request() req: UserRequest): UserPayload {
+    return req.user;
   }
 
   @Get()
@@ -47,11 +54,13 @@ export class UsersController {
   }
 
   @Patch(':id')
+  @UseGuards(MeGuard)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
+  @UseGuards(MeGuard)
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }

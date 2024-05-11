@@ -79,3 +79,4 @@ model Subcategory {
   categoryId  Int
   category    Category      @relation(fields: [categoryId], references: [id])
 }
+
