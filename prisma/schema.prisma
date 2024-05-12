@@ -30,11 +30,11 @@ model Review {
   description   String
   datePosted    DateTime
   helpfulCount  Int       @default(0)
-  user          User      @relation(fields: [userId], references: [id])
-  userId        Int
-  business      Business  @relation(fields: [businessId], references: [id])
-  businessId    Int
-  comments      Comment[]
+  user          User?      @relation(fields: [userId], references: [id])
+  userId        Int?
+  business      Business?  @relation(fields: [businessId], references: [id])
+  businessId    Int?
+  comments      Comment?
 }
 
 model Comment {
@@ -42,7 +42,7 @@ model Comment {
   text        String
   datePosted  DateTime
   review      Review    @relation(fields: [reviewId], references: [id])
-  reviewId    Int
+  reviewId    Int       @unique
   user        User      @relation(fields: [userId], references: [id])
   userId      Int
 }
