@@ -57,11 +57,11 @@ model Business {
   address         String
   averageRating   Float         @default(0)
   numberOfRatings Int           @default(0)
-  reviews         Review[]
+  reviews         Review?
   categoryId      Int
-  subcategoryId   Int
+  subcategoryId   Int?
   category        Category      @relation(fields: [categoryId], references: [id])
-  subcategory     Subcategory   @relation(fields: [subcategoryId], references: [id])
+  subcategories    Subcategory?   @relation(fields: [subcategoryId], references: [id])
 }
 
 model Category {

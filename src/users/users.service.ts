@@ -96,6 +96,7 @@ export class UsersService {
     });
 
     delete user.password;
+    return user;
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {

@@ -10,6 +10,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './common/guards/auth.guard';
 import { ReviewsModule } from './reviews/reviews.module';
 import { CommentsModule } from './comments/comments.module';
+import { BusinessesModule } from './businesses/businesses.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CommentsModule } from './comments/comments.module';
     }),
     ReviewsModule,
     CommentsModule,
+    BusinessesModule,
   ],
   controllers: [AppController],
   providers: [
