@@ -28,7 +28,7 @@ model Review {
   id            Int       @id @default(autoincrement())
   title         String    @db.VarChar(30)
   description   String
-  datePosted    DateTime
+  datePosted    DateTime  @default(now())
   helpfulCount  Int       @default(0)
   user          User?      @relation(fields: [userId], references: [id])
   userId        Int?
@@ -40,11 +40,11 @@ model Review {
 model Comment {
   id          Int       @id @default(autoincrement())
   text        String
-  datePosted  DateTime
+  datePosted  DateTime  @default(now())
   review      Review    @relation(fields: [reviewId], references: [id])
   reviewId    Int       @unique
-  user        User      @relation(fields: [userId], references: [id])
-  userId      Int
+  user        User?      @relation(fields: [userId], references: [id])
+  userId      Int?
 }
 
 model Business {

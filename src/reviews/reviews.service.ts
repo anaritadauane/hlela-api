@@ -45,9 +45,9 @@ export class ReviewsService {
     }
   }
 
-  async getAllReviewsByBusiness(id: number): Promise<Review[]> {
+  async getAllReviewsByBusiness(businessId: number): Promise<Review[]> {
     const reviews = await this.prisma.review.findMany({
-      where: { id },
+      where: { businessId },
     });
     return reviews;
   }

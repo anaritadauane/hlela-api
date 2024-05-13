@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './common/guards/auth.guard';
 import { ReviewsModule } from './reviews/reviews.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ReviewsModule } from './reviews/reviews.module';
       signOptions: { expiresIn: '12h' },
     }),
     ReviewsModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [
