@@ -15,7 +15,6 @@ export class CommentsService {
           datePosted: createCommentDto.datePosted,
           review: { connect: { id: createCommentDto.reviewId } },
           user: { connect: { id: createCommentDto.userId } },
-          ...CreateCommentDto,
         },
       });
       return comment;

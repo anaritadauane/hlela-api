@@ -8,11 +8,17 @@ import { UpdateReviewDto } from './dto/update-review.dto';
 export class ReviewsService {
   constructor(private prisma: PrismaService) {}
   async create(createReviewDto: CreateReviewDto): Promise<Review> {
+    const { title, description, datePosted, helpfulCount, userId } =
+      createReviewDto;
     try {
       // new review
       const review = await this.prisma.review.create({
         data: {
-          ...createReviewDto,
+          title,
+          description,
+          datePosted,
+          helpfulCount,
+          user: { connect: { id: userId } },
         },
       });
 
