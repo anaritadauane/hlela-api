@@ -33,7 +33,7 @@ model Review {
   user          User?      @relation(fields: [userId], references: [id])
   userId        Int?
   business      Business?  @relation(fields: [businessId], references: [id])
-  businessId    Int?
+  businessId    Int?       @unique
   comments      Comment?
 }
 

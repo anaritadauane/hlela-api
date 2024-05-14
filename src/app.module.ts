@@ -11,6 +11,8 @@ import { AuthGuard } from './common/guards/auth.guard';
 import { ReviewsModule } from './reviews/reviews.module';
 import { CommentsModule } from './comments/comments.module';
 import { BusinessesModule } from './businesses/businesses.module';
+import { CategoryModule } from './category/category.module';
+import { SubcategoryModule } from './subcategory/subcategory.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { BusinessesModule } from './businesses/businesses.module';
     ReviewsModule,
     CommentsModule,
     BusinessesModule,
+    CategoryModule,
+    SubcategoryModule,
   ],
   controllers: [AppController],
   providers: [

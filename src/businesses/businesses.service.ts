@@ -83,7 +83,7 @@ export class BusinessesService {
     }
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<string> {
     try {
       const business = await this.prisma.business.findUniqueOrThrow({
         where: { id },

@@ -10,23 +10,24 @@ import {
 import { BusinessesService } from './businesses.service';
 import { CreateBusinessDto } from './dto/create-business.dto';
 import { UpdateBusinessDto } from './dto/update-business.dto';
+import { Business } from '@prisma/client';
 
 @Controller('business')
 export class BusinessesController {
   constructor(private readonly businessesService: BusinessesService) {}
 
   @Post()
-  create(@Body() createBusinessDto: CreateBusinessDto) {
+  create(@Body() createBusinessDto: CreateBusinessDto): Promise<Business> {
     return this.businessesService.create(createBusinessDto);
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<Business[]> {
     return this.businessesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string): Promise<Business> {
     return this.businessesService.findOne(+id);
   }
 
@@ -34,12 +35,12 @@ export class BusinessesController {
   update(
     @Param('id') id: string,
     @Body() updateBusinessDto: UpdateBusinessDto,
-  ) {
+  ): Promise<Business> {
     return this.businessesService.update(+id, updateBusinessDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string): Promise<string> {
     return this.businessesService.remove(+id);
   }
 }
