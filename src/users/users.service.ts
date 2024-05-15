@@ -31,6 +31,7 @@ export class UsersService {
           firstName: createUserDto.firstName,
           surname: createUserDto.surname,
           username: createUserDto.username,
+          isAdmin: createUserDto.isAdmin,
         },
       });
 

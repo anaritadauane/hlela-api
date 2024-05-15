@@ -4,6 +4,7 @@ import {
   MinLength,
   // IsAlphanumeric,
   IsEmail,
+  IsBoolean,
   // Matches,
 } from 'class-validator';
 
@@ -37,4 +38,7 @@ export class CreateUserDto {
   @IsString()
   // @Matches(passwordRegEx, { message: ''})
   password: string;
+
+  @IsBoolean()
+  isAdmin?: boolean;
 }

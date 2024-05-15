@@ -17,7 +17,7 @@ export class BusinessesService {
         email,
         address,
         categoryId,
-        subcategoryId,
+        subcategories,
       } = createBusinessDto;
 
       const business = await this.prisma.business.create({
@@ -29,7 +29,11 @@ export class BusinessesService {
           email,
           address,
           category: { connect: { id: categoryId } },
-          subcategory: { connect: { id: subcategoryId } },
+          subcategories: {
+            connect: subcategories.map((subcategory) => ({
+              id: subcategory.id,
+            })),
+          },
         },
       });
       return business;
@@ -72,6 +76,11 @@ export class BusinessesService {
         where: { id },
         data: {
           ...updateBusinessDto,
+          subcategories: {
+            connect: updateBusinessDto.subcategories.map((subcategory) => ({
+              id: subcategory.id,
+            })),
+          },
         },
       });
       return businessUpdated;
