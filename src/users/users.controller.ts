@@ -18,6 +18,7 @@ import { LoginResponse, UserPayload } from './interfaces/users-login.interface';
 import { UserRequest } from './interfaces/users-request.interface';
 import { Public } from 'src/common/decorators/public.decorator';
 import { MeGuard } from 'src/common/guards/me.guard';
+// import { AdminGuard } from 'src/common/guards/admin.guard';
 
 @Controller('users')
 export class UsersController {
@@ -41,7 +42,9 @@ export class UsersController {
     return req.user;
   }
 
+  @Public()
   @Get()
+  // @UseGuards(AdminGuard)
   findAll() {
     return this.usersService.findAll();
   }

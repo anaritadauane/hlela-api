@@ -71,10 +71,12 @@ export class UsersService {
         id: user.id,
         email: user.email,
         username: user.username,
+        isAdmin: user.isAdmin,
       };
 
       return {
         access_token: await this.jwtService.signAsync(payload),
+        payload,
       };
     } catch (error) {
       throw new HttpException(error, 500);
