@@ -8,23 +8,23 @@ import { Category } from '@prisma/client';
 export class CategoryService {
   constructor(private prisma: PrismaService) {}
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
-    try {
-      const { name, description, subcategories } = createCategoryDto;
-      const category = await this.prisma.category.create({
-        data: {
-          name,
-          description,
-          subcategories: {
-            create: subcategories.map((subcategory) => ({
-              name: subcategory.name,
-            })),
-          },
-        },
-      });
-      return category;
-    } catch (error) {
-      throw new HttpException(error, 500);
-    }
+    // try {
+    const { name, description /*,subcategories*/ } = createCategoryDto;
+    const category = await this.prisma.category.create({
+      data: {
+        name,
+        description,
+        // subcategories: {
+        //   create: subcategories.map((subcategory) => ({
+        //     name: subcategory.name,
+        //   })),
+        // },
+      },
+    });
+    return category;
+    // } catch (error) {
+    //   throw new HttpException(error, 500);
+    // }
   }
 
   async getAllCategories(): Promise<Category[]> {
