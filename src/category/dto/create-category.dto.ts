@@ -1,7 +1,4 @@
-import { IsString, IsOptional, ValidateNested } from 'class-validator';
-import { Type } from 'class-transformer';
-import { CreateSubcategoryDto } from '../../subcategory/dto/create-subcategory.dto';
-import { Subcategory } from '@prisma/client';
+import { IsString } from 'class-validator';
 
 export class CreateCategoryDto {
   @IsString()
@@ -10,8 +7,8 @@ export class CreateCategoryDto {
   @IsString()
   description: string;
 
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => CreateSubcategoryDto)
-  subcategories?: Subcategory[];
+  // @IsOptional()
+  // @ValidateNested()
+  // @Type(() => CreateSubcategoryDto)
+  // subcategories: Subcategory[];
 }

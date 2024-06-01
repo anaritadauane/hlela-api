@@ -104,7 +104,7 @@ export class UsersService {
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     try {
-      await this.prisma.user.findFirstOrThrow({
+      await this.prisma.user.findFirst({
         where: { id },
       });
 

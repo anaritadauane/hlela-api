@@ -61,7 +61,6 @@ model Business {
   reviews         Review?
   categoryId      Int
   category        Category      @relation(fields: [categoryId], references: [id])
-  subcategories   Subcategory[] 
 }
 
 model Category {
@@ -69,14 +68,7 @@ model Category {
   name        String
   description String
   businesses  Business[]
-  subcategories Subcategory[]
 }
 
-model Subcategory {
-  id          Int           @id @default(autoincrement())
-  name        String
-  businesses  Business[]
-  categoryId  Int
-  category    Category      @relation(fields: [categoryId], references: [id])
-}
+
 

@@ -9,22 +9,14 @@ export class CategoryService {
   constructor(private prisma: PrismaService) {}
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
     // try {
-    const { name, description /*,subcategories*/ } = createCategoryDto;
+    const { name, description } = createCategoryDto;
     const category = await this.prisma.category.create({
       data: {
         name,
         description,
-        // subcategories: {
-        //   create: subcategories.map((subcategory) => ({
-        //     name: subcategory.name,
-        //   })),
-        // },
       },
     });
     return category;
-    // } catch (error) {
-    //   throw new HttpException(error, 500);
-    // }
   }
 
   async getAllCategories(): Promise<Category[]> {
@@ -43,7 +35,6 @@ export class CategoryService {
     id: number,
     updateCategoryDto: UpdateCategoryDto,
   ): Promise<Category> {
-    const { subcategories } = updateCategoryDto;
     try {
       await this.prisma.user.findUniqueOrThrow({
         where: { id },
@@ -54,9 +45,6 @@ export class CategoryService {
         where: { id },
         data: {
           ...updateCategoryDto,
-          subcategories: {
-            set: subcategories.map((subcategory) => ({ id: subcategory.id })),
-          },
         },
       });
       return categoryUpdated;

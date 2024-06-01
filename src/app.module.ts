@@ -12,7 +12,7 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { CommentsModule } from './comments/comments.module';
 import { BusinessesModule } from './businesses/businesses.module';
 import { CategoryModule } from './category/category.module';
-import { SubcategoryModule } from './subcategory/subcategory.module';
+// import { SubcategoryModule } from './subcategory/subcategory.module';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { SubcategoryModule } from './subcategory/subcategory.module';
     CommentsModule,
     BusinessesModule,
     CategoryModule,
-    SubcategoryModule,
+    // SubcategoryModule,
   ],
   controllers: [AppController],
   providers: [

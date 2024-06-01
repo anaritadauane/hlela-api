@@ -30,12 +30,14 @@ export class CategoryController {
     return this.categoryService.getAllCategories();
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.categoryService.getCategoryById(+id);
   }
 
   // @UseGuards(AdminGuard)
+  @Public()
   @Patch(':id')
   update(
     @Param('id') id: string,
