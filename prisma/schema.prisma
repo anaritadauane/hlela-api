@@ -53,7 +53,7 @@ model Business {
   name            String
   description     String
   website         String
-  phoneNumber     Int
+  phoneNumber     String
   email           String
   address         String
   averageRating   Float         @default(0)

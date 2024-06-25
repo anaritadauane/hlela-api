@@ -20,13 +20,20 @@ export class CategoryService {
   }
 
   async getAllCategories(): Promise<Category[]> {
-    const categories = await this.prisma.category.findMany();
+    const categories = await this.prisma.category.findMany({
+      include: {
+        businesses: true,
+      },
+    });
     return categories;
   }
 
   async getCategoryById(id: number): Promise<Category> {
     const category = await this.prisma.category.findUniqueOrThrow({
       where: { id },
+      include: {
+        businesses: true,
+      },
     });
     return category;
   }

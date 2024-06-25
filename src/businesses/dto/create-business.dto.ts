@@ -11,8 +11,8 @@ export class CreateBusinessDto {
   @IsString()
   website: string;
 
-  @IsNumber()
-  phoneNumber: number;
+  @IsString()
+  phoneNumber: string;
 
   @IsString()
   email: string;
